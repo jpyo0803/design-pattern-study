@@ -1,0 +1,92 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":big_farm",
+        ":farm",
+        ":small_farm",
+    ],
+)
+
+cc_library(
+    name = "farm",
+    srcs = ["farm.cc"],
+    hdrs = ["farm.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        ":animal",
+    ],
+)
+
+cc_library(
+    name = "small_farm",
+    srcs = ["small_farm.cc"],
+    hdrs = ["small_farm.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        ":cat",
+        ":dog",
+        ":farm",
+    ],
+)
+
+cc_library(
+    name = "big_farm",
+    srcs = ["big_farm.cc"],
+    hdrs = ["big_farm.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        ":cow",
+        ":farm",
+        ":horse",
+    ],
+)
+
+cc_library(
+    name = "animal",
+    hdrs = ["animal.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+)
+
+cc_library(
+    name = "cat",
+    srcs = ["cat.cc"],
+    hdrs = ["cat.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        "//design_pattern_study/factory_method:animal",
+    ],
+)
+
+cc_library(
+    name = "dog",
+    srcs = ["dog.cc"],
+    hdrs = ["dog.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        "//design_pattern_study/factory_method:animal",
+    ],
+)
+
+cc_library(
+    name = "cow",
+    srcs = ["cow.cc"],
+    hdrs = ["cow.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        "//design_pattern_study/factory_method:animal",
+    ],
+)
+
+cc_library(
+    name = "horse",
+    srcs = ["horse.cc"],
+    hdrs = ["horse.h"],
+    visibility = ["//design_pattern_study/factory_method:__pkg__"],
+    deps = [
+        "//design_pattern_study/factory_method:animal",
+    ],
+)
