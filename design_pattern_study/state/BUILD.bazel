@@ -1,0 +1,38 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
+cc_binary(
+    name = "main",
+    srcs = ["main.cc"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":concrete_states",
+        ":person",
+    ],
+)
+
+cc_library(
+    name = "person",
+    srcs = ["person.cc"],
+    hdrs = ["person.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":state",
+    ],
+)
+
+cc_library(
+    name = "concrete_states",
+    srcs = ["concrete_states.cc"],
+    hdrs = ["concrete_states.h"],
+    visibility = ["//visibility:public"],
+    deps = [
+        ":person",
+        ":state",
+    ],
+)
+
+cc_library(
+    name = "state",
+    hdrs = ["state.h"],
+    visibility = ["//visibility:public"],
+)
